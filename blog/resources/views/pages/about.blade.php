@@ -44,8 +44,8 @@
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <div class="container">
             <div class="content">
-                <div class="title">About me</div>
-                <p>I like learning Laravel!</p>
+                <div class="title">About {{ $data["fullname"] }}</div>
+                <p>Email: {{ $data["email"] }}</p>
             </div>
         </div>
     </body>
