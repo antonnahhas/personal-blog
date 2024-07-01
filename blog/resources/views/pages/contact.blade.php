@@ -1,52 +1,82 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laravel Blog - Contact Me</title>
+    <!-- Other meta tags -->
+    
+    <!-- Include Bootstrap CSS from CDN for quick testing -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Include compiled CSS -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand pl-3" href="#">Laravel blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <title>Laravel</title>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="\">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="\about">About</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="\contact">Contact</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right pr-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-        <!-- Styles -->
-        <style>
-            html, body{
-                height: 100%;
-            }
-
-            body{
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="container">
-            <div class="content">
-                <div class="title">Contact me</div>
-                <p>Make it before 11 PM ;D</p>
+    <div class="container pt-3">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Contact Me</h1>
+                <hr>
+                <form>
+                    <div class="form-group">
+                        <label name="email">Email:</label>
+                        <input id="email" name="email" class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <label name="subject">Subject:</label>
+                        <input id="subject" name="subject" class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <label name="message">Message:</label>
+                        <textarea id="message" name="message" class="form-control">Type you message here...</textarea> 
+                    </div>
+                    <input type="submit" value="Send Message" class="btn btn-success">
+                </form>
             </div>
         </div>
-    </body>
+    </div>
+
+
+    <!-- Include jQuery and Bootstrap JS from CDN for quick testing -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Include compiled JS -->
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
 </html>
