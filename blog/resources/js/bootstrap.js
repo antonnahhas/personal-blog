@@ -1,4 +1,4 @@
-import axios from 'axios';
-window.axios = axios;
+window.Popper = require('@popperjs/core').default;
+window.$ = window.jQuery = require('jquery');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+require('bootstrap');
