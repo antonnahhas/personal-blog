@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -28,8 +29,20 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // step1: validate data
+        $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required'
+        ]);
         // step2: store to database
+        $post = new Post;
+        $post->title = $request->title;
+        $post->body = $request->body;
+
+        $post->save();
+
         // step3: redirect to another page
+
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -38,7 +51,7 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('pages.welcome');
     }
 
     /**
