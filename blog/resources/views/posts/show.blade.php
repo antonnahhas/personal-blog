@@ -33,10 +33,12 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Html()->a(route('posts.edit', $post->id), 'Edit')->attribute('class', 'btn btn-primary btn-block') !!}
+                            {{ Html()->a(route('posts.edit', $post->id), 'Edit')->attribute('class', 'btn btn-primary btn-block') }}
                         </div>
                         <div class="col-md-6">
-                        {!! Html()->a(route('posts.destroy', $post->id), 'Delete')->attribute('class', 'btn btn-danger btn-block') !!}
+                            {!! html()->modelForm($post, 'DELETE', route('posts.destroy', $post->id))->open() !!}
+                                {{ html()->submit('Delete')->attribute('class', 'btn btn-danger btn-block')}}
+                            {!! html()->closeModelForm() !!}
                         </div>
                     </div>
                 </div>
