@@ -40,7 +40,7 @@
                             {!! Html()->a(route('posts.show', $post->id), 'Cancel')->attribute('class', 'btn btn-danger btn-block') !!}
                         </div>
                         <div class="col-md-6">
-                        {!! Html()->a(route('posts.update', $post->id), 'Save')->attribute('class', 'btn btn-success btn-block') !!}
+                        {{ html()->submit('Save Changes')->attribute('class', 'btn btn-success btn-block')}}
                         </div>
                     </div>
                 </div>
