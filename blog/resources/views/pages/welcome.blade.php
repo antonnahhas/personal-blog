@@ -17,6 +17,7 @@
         </div>
         <div class="row">
             <div class="col-md-8">
+                <h2>Posts</h2>
                 @foreach($posts as $post)
                 <div class="post py-2">
                     <h3>{{ $post->title }}</h3>
