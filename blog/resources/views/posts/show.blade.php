@@ -41,6 +41,11 @@
                             {!! html()->closeModelForm() !!}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{ Html()->a(route('posts.index'), 'See All Posts')->attribute('class', 'btn btn-default btn-light btn-block btn-h1-spacing') }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
