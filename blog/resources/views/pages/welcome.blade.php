@@ -17,11 +17,12 @@
         </div>
         <div class="row">
             <div class="col-md-8">
+                <h2>Posts</h2>
                 @foreach($posts as $post)
                 <div class="post py-2">
                     <h3>{{ $post->title }}</h3>
                     <p>{{ substr($post->body, 0, 300) }}{{ strlen($post->body) > 300 ? "...": "" }}</p>
-                    <a href="#" class="btn btn-primary">Read more</a>
+                    <a href="{{ route('blog.single', $post->slug) }}" class="btn btn-primary">Read more</a>
                 </div>
                 <hr>
 

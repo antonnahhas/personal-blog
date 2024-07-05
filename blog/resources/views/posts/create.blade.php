@@ -12,6 +12,9 @@
                     {{ html()->label('Title:', 'title') }}
                     {{ html()->text('title')->attribute('class', 'form-control') }}
 
+                    {{ html()->label('Slug:', 'slug') }}
+                    {{ html()->text('slug')->attribute('class', 'form-control') }}
+
                     {{ html()->label('Content:', 'body') }}
                     {{ html()->textarea('body')->attribute('class', 'form-control') }}
 

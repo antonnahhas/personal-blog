@@ -15,6 +15,14 @@
                     <dl>
                         <div class="row">
                             <div class="col-md-6">
+                                <dt>URL:</dt>
+                            </div>
+                            <div class="col-md-6">
+                                <dd><a href="{{ route('blog.single', $post->slug) }}">{{ route('blog.single', $post->slug) }}</a></dd>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <dt>Created at:</dt>
                             </div>
                             <div class="col-md-6">
