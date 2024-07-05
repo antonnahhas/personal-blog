@@ -18,7 +18,7 @@
                                 <dt>URL:</dt>
                             </div>
                             <div class="col-md-6">
-                                <dd><a href="{{ url($post->slug) }}">{{ url($post->slug) }}</a></dd>
+                                <dd><a href="{{ route('blog.single', $post->slug) }}">{{ route('blog.single', $post->slug) }}</a></dd>
                             </div>
                         </div>
                         <div class="row">
