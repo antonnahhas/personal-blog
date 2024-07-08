@@ -20,7 +20,8 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right pr-4">
-                <li class="nav-item dropdown">
+                @if (Auth::check())
+                <li class="nav-item dropdown mr-4">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         My account
                     </a>
@@ -34,6 +35,9 @@
                         {{ html()->form()->close() }}
                     </div>
                 </li>
+                @else
+                <a href="{{ route('login') }}" class="btn btn-default mr-4">Login</a>
+                @endif
             </ul>
         </div>
     </nav>
