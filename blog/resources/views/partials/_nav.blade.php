@@ -28,7 +28,10 @@
                         <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
                         <a class="dropdown-item" href="#">Another action</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        {{ html()->form('POST', route('logout'))->open() }}
+                            {{ csrf_field() }}
+                            {{ html()->submit('Logout')->attribute('class', 'dropdown-item')}}
+                        {{ html()->form()->close() }}
                     </div>
                 </li>
             </ul>

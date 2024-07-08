@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Session;
+use Illuminate\Routing\Controllers\Middleware;
 
 class PostController extends Controller
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware(middleware: 'auth'),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
