@@ -14,7 +14,7 @@ Route::get('contact', [PagesController::class, 'getContact']);
 Route::get('about', [PagesController::class, 'getAbout']);
 Route::get('/', [PagesController::class, 'getIndex']);
 
-// Breeze Routes
+// Breeze Routes TODO: could be deleted later
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
