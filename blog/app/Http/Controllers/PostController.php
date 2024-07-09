@@ -82,8 +82,10 @@ class PostController extends Controller
     {
         // Find the post in the db and save it as a variable
         $post = Post::find($id);
+
+        $categories = Category::all();
         // return the view
-        return view('posts.edit')->withPost($post);
+        return view('posts.edit')->withPost($post)->withCategories($categories);
     }
 
     /**
@@ -96,13 +98,15 @@ class PostController extends Controller
         if($request->slug == $post->slug){
             $request->validate([
                 'title' => 'required|max:255',
-                'body' => 'required'
+                'body' => 'required',
+                'category_id' => 'required|integer'
             ]);
         }
         else{
             $request->validate([
                 'title' => 'required|max:255',
                 'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'category_id' => 'required|integer',
                 'body' => 'required'
             ]);
         }
@@ -112,6 +116,7 @@ class PostController extends Controller
 
         $post->title = $request->title;
         $post->slug = $request->slug;
+        $post->category_id = $request->category_id;
         $post->body = $request->body;
 
         $post->save();
