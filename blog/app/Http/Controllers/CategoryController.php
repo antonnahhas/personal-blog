@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Session;
 use Illuminate\Routing\Controllers\Middleware;
 
 class CategoryController extends Controller
@@ -25,8 +26,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate data
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+        ]);
         // Save a new category
+        $category = new Category();
+
+        $category->name = $request->name;
+        $category->save();
+
+        // Set a flash message
+        Session::flash('success', 'New category has been created!');
         // redirect back to index
+        return redirect()->route('categories.index');
     }
 
     /**
