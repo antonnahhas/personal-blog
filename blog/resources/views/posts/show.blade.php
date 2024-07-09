@@ -37,6 +37,14 @@
                                 <dd>{{ date('M j, Y H:i', strtotime($post->updated_at)) }}</dd>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <dt>Category:</dt>
+                            </div>
+                            <div class="col-md-6">
+                                <dd>{{ $post->category->name }}</dd>
+                            </div>
+                        </div>
                     </dl>
                     <hr>
                     <div class="row">
