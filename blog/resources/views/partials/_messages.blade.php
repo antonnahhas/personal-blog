@@ -6,6 +6,14 @@
 
 @endif
 
+@if (Session::has('status'))
+
+<div class="alert alert-info" role="alert">
+  <strong>status:</strong> {{ Session::get('status') }}
+</div>
+
+@endif
+
 @if (count($errors) > 0)
 <div class="alert alert-danger" role="alert">
     <strong?>Errors:</strong>

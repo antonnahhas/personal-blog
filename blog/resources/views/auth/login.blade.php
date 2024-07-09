@@ -17,6 +17,7 @@
                 {{ html()->checkbox('remember')->class('form-check-label my-2') }}
                 <br>
                 {{ html()->submit('Login')->attribute('class', 'btn btn-primary btn-block')}}
+                <p class="text-center mt-2"><a href="{{ route('password.request') }}">Forgot My Password</a></p>
             
             {!! html()->form()->close() !!}
         </div>
