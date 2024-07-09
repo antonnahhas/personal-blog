@@ -27,6 +27,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
+                        <a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>
                         <div class="dropdown-divider"></div>
                         {{ html()->form('POST', route('logout'))->open() }}
                             {{ csrf_field() }}
