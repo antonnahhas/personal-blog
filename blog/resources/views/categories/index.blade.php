@@ -11,6 +11,7 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,6 +19,11 @@
                     <tr>
                         <th>{{ $category->id }}</th>
                         <td>{{ $category->name }}</td>
+                        <td>
+                            {!! html()->modelForm($category, 'DELETE', route('categories.destroy', $category->id))->open() !!}
+                                {{ html()->submit('X')->attribute('class', 'btn btn-danger')}}
+                            {!! html()->closeModelForm() !!}
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
