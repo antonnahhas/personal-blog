@@ -15,6 +15,13 @@
                     {{ html()->label('Slug:', 'slug') }}
                     {{ html()->text('slug')->attribute('class', 'form-control') }}
 
+                    {{ html()->label('Category:', 'category_id') }}
+                    <select class="form-control" name="category_id">
+                        @foreach($categories as $category)
+                        <option value='{{ $category->id }}'>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+
                     {{ html()->label('Content:', 'body') }}
                     {{ html()->textarea('body')->attribute('class', 'form-control') }}
 
