@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 use Session;
 use Illuminate\Routing\Controllers\Middleware;
 
 class PostController extends Controller
 {
-    public static function middleware(): array
-    {
-        return [
-            new Middleware(middleware: 'auth'),
-        ];
-    }
+    // public static function middleware(): array
+    // {
+    //     return [
+    //         new Middleware(middleware: 'auth'),
+    //     ];
+    // }
     /**
      * Display a listing of the resource.
      */
@@ -34,7 +35,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create')->withCategories($categories);
+        $tags = Tag::all();
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -47,6 +49,7 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'category_id' => 'required|integer',
+            'tags' => 'required',
             'body' => 'required'
         ]);
         // step2: store to database
@@ -57,6 +60,8 @@ class PostController extends Controller
         $post->body = $request->body;
 
         $post->save();
+
+        $post->tags()->sync($request->tags, false);
 
         Session::flash('success', 'The blog post was successfully saved!');
 
