@@ -49,7 +49,6 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'category_id' => 'required|integer',
-            'tags' => 'required',
             'body' => 'required'
         ]);
         // step2: store to database
@@ -89,8 +88,9 @@ class PostController extends Controller
         $post = Post::find($id);
 
         $categories = Category::all();
+        $tags = Tag::all();
         // return the view
-        return view('posts.edit')->withPost($post)->withCategories($categories);
+        return view('posts.edit')->withPost($post)->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -125,6 +125,15 @@ class PostController extends Controller
         $post->body = $request->body;
 
         $post->save();
+
+        if(isset($request->tags)) {
+            $post->tags()->sync($request->tags);
+        }
+        else{
+            $post->tags()->sync([]);
+        }
+
+        
         // Set flash data with a success message
         Session::flash('success', 'The blog post was successfully updated!');
         // Redirect to posts.show

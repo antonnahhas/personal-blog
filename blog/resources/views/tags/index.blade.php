@@ -19,7 +19,7 @@
                     @foreach($tags as $tag)
                     <tr>
                         <th>{{ $tag->id }}</th>
-                        <td>{{ $tag->name }}</td>
+                        <td><a href="{{ route('tags.show', $tag->id)}}">{{ $tag->name }}</a></td>
                         <td>
                             {!! html()->modelForm($tag, 'DELETE', route('tags.destroy', $tag->id))->open() !!}
                                 {{ html()->submit('X')->attribute('class', 'btn btn-danger')}}
