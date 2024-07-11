@@ -38,11 +38,25 @@
                 <div class="row">
                     <div class="col-md-12">
                         {{ html()->label('Comment:', 'comment') }}
-                        {{ html()->textarea('comment')->attribute('class', 'form-control')->attribute('rows', '5') }}
+                        {{ html()->textarea('comment')->attribute('class', 'form-control') }}
                     </div>
                 </div>
                     {{ html()->submit('Add Comment')->attribute('class', 'btn btn-success btn-block mt-4')}}
             {{ html()->closeModelForm() }}
+        </div>
+
+        <hr class="mt-5">
+
+        <div class="row mt-4">
+            <div class="col-md-8 offset-md-2">
+                <h1>All comments</h1>
+                @foreach($comments as $comment)
+                    <div class="comment"> 
+                        <p><strong class="pr-3">{{ $comment->name }}:</strong>{{ $comment->comment }}</p>
+                    </div>
+                    <hr>
+                @endforeach
+            </div>
         </div>
     </div>
 
