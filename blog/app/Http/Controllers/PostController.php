@@ -11,12 +11,6 @@ use Illuminate\Routing\Controllers\Middleware;
 
 class PostController extends Controller
 {
-    // public static function middleware(): array
-    // {
-    //     return [
-    //         new Middleware(middleware: 'auth'),
-    //     ];
-    // }
     /**
      * Display a listing of the resource.
      */
