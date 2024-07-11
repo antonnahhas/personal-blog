@@ -117,8 +117,6 @@ class PostController extends Controller
         }
         
         // Save the data to the db
-        $post = Post::find($id);
-
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
