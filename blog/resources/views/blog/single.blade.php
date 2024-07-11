@@ -46,13 +46,22 @@
         </div>
 
         <hr class="mt-5">
-
+        
         <div class="row mt-4">
-            <div class="col-md-8 offset-md-2">
-                <h1>All comments</h1>
+            <div class="col-md-8 offset-md-2 card">
+                <h2 class="comments-title">Comments Section</h2>
                 @foreach($comments as $comment)
-                    <div class="comment"> 
-                        <p><strong class="pr-3">{{ $comment->name }}:</strong>{{ $comment->comment }}</p>
+                    <div class="comment">
+                        <div class="author-info">
+                            <img src='{{ "https://www.gravatar.com/avatar/" . md5(strtolower(trim($comment->email))) . "?s=50&d=wavatar" }}' class="author-image">
+                            <div class="author-name">
+                                <h4>{{ $comment->name }}</h4>
+                                <p class="author-time">{{ date('F nS, Y - g:i A', strtotime($comment->created_at)) }}</p>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            {{ $comment->comment }}
+                        </div> 
                     </div>
                     <hr>
                 @endforeach
