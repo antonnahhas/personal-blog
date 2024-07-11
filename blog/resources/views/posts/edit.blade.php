@@ -28,7 +28,7 @@
             </select>
             
             {{ html()->label('Content:', 'body')->attribute('class', 'form-spacing-top') }}
-            {{ html()->textarea('body')->attribute('class', 'form-control') }}
+            {{ html()->textarea('body')->attribute('class', 'form-control')->attribute('rows', '5') }}
         </div>
         <div class="col-md-4">
             <div class="card bg-light">

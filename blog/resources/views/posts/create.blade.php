@@ -30,7 +30,7 @@
                     </select>
 
                     {{ html()->label('Content:', 'body') }}
-                    {{ html()->textarea('body')->attribute('class', 'form-control') }}
+                    {{ html()->textarea('body')->attribute('class', 'form-control')->attribute('rows', '5') }}
 
                     {{ html()->submit('Create Post')->attribute('class', 'btn btn-success btn-lg btn-block mt-4')}}
                 {{ html()->closeModelForm() }}

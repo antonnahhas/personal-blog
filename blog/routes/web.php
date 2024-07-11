@@ -6,6 +6,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
 
 // Original Routes
@@ -16,6 +17,8 @@ Route::get('contact', [PagesController::class, 'getContact']);
 Route::post('contact', [PagesController::class, 'postContact']);
 Route::get('about', [PagesController::class, 'getAbout']);
 Route::get('/', [PagesController::class, 'getIndex']);
+
+Route::post('comments/{post_id}', [CommentsController::class, 'store'])->name('comments.store');
 
 // Breeze Routes TODO: could be deleted later
 Route::get('/dashboard', function () {
