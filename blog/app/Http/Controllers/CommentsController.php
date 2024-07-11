@@ -10,22 +10,6 @@ use Session;
 class CommentsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request, $post_id)
@@ -54,19 +38,13 @@ class CommentsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $comment = Comment::find($id);
+
+        return view('comments.edit')->withComment($comment);
     }
 
     /**
@@ -74,7 +52,25 @@ class CommentsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'comment' => 'required|min:3|max:255'
+        ]);
+
+        $comment = Comment::find($id);
+        $comment->comment = $request->comment;
+        $comment->save();
+
+        Session::flash('success', 'The comment was successfully updated!');
+
+        return redirect()->route('posts.show', $comment->post_id);
+
+    }
+
+    public function delete(string $id)
+    {
+        $comment = Comment::find($id);
+
+        return view('comments.delete')->withComment($comment);
     }
 
     /**
@@ -82,6 +78,12 @@ class CommentsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $comment = Comment::find($id);
+
+        $comment->delete();
+
+        Session::flash('success', 'The comment was successfully deleted!');
+
+        return redirect()->route('posts.show', $comment->post_id);
     }
 }

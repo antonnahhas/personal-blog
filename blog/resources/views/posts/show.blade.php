@@ -15,6 +15,33 @@
                     <span class="badge badge-secondary">{{ $tag->name }}</span>
                 @endforeach
             </div>
+            <div id="backend-comments" class="mt-5">
+                <h3>Comments: </h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Comment</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($comments as $comment)
+                        <tr>
+                            <td>{{ $comment->name }}</td>
+                            <td>{{ $comment->email }}</td>
+                            <td>{{ $comment->comment }}</td>
+                            <td>
+                                <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-light btn-sm btn-default">Edit</a>
+                                <a href="{{ route('comments.delete', $comment->id) }}" class="btn btn-light btn-sm btn-default">Delete</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+            </div>
         </div>
         <div class="col-md-4">
             <div class="card bg-light">

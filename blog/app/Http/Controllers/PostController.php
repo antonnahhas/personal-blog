@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Comment;
 use Session;
 use Illuminate\Routing\Controllers\Middleware;
 
@@ -70,7 +71,8 @@ class PostController extends Controller
     public function show(string $id)
     {
         $post = Post::find($id);
-        return view('posts.show')->withPost($post);
+        $comments = Comment::all();
+        return view('posts.show')->withPost($post)->withComments($comments);
     }
 
     /**
