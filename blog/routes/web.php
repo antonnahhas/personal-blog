@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 // Original Routes
@@ -26,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('posts', PostController::class);
     Route::resource('categories', CategoryController::class, ['except' => ['create']]);
+    Route::resource('tags', TagController::class, ['except' => ['create']]);
 });
 
 require __DIR__.'/auth.php';

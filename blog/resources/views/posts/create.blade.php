@@ -16,9 +16,16 @@
                     {{ html()->text('slug')->attribute('class', 'form-control') }}
 
                     {{ html()->label('Category:', 'category_id') }}
-                    <select class="form-control" name="category_id">
+                    <select class="form-control select2" name="category_id">
                         @foreach($categories as $category)
                         <option value='{{ $category->id }}'>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+
+                    {{ html()->label('Tags:', 'tags') }}
+                    <select class="form-control select2" name="tags[]" multiple="multiple">
+                        @foreach($tags as $tag)
+                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                         @endforeach
                     </select>
 
@@ -30,4 +37,12 @@
             </div>
         </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 @endsection

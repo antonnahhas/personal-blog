@@ -14,9 +14,16 @@
             {{ html()->text('slug')->attribute('class', 'form-control') }}
             
             {{ html()->label('Category:', 'category_id') }}
-            <select class="form-control" name="category_id">
+            <select class="form-control select2" name="category_id">
                 @foreach($categories as $category)
                 <option value='{{ $category->id }}' {{ $post->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                @endforeach
+            </select>
+
+            {{ html()->label('Tags:', 'tags') }}
+            <select class="form-control select2" name="tags[]" multiple="multiple">
+                @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}" {{ in_array($tag->id, $post->tags->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $tag->name }}</option>
                 @endforeach
             </select>
             
@@ -58,4 +65,12 @@
         </div>
         {!! html()->closeModelForm() !!}
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 @endsection
