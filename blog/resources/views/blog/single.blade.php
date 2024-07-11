@@ -24,6 +24,7 @@
 
     <div class="row">
         <div class="col-md-8 offset-md-2 mt-5"id="comment-form">
+            <h4>Add a Comment:</h4>
             {{ html()->modelForm('POST')->route('comments.store', $post->id)->open() }}
                 <div class="row">
                     <div class="col-md-6">
