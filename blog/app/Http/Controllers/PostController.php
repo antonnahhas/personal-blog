@@ -9,6 +9,7 @@ use App\Models\Tag;
 use App\Models\Comment;
 use Session;
 use Illuminate\Routing\Controllers\Middleware;
+use Stevebauman\Purify\Facades\Purify;
 
 class PostController extends Controller
 {
@@ -51,7 +52,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
-        $post->body = $request->body;
+        $post->body = Purify::clean($request->body); // Purify dirty html
 
         $post->save();
 
@@ -116,7 +117,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
-        $post->body = $request->body;
+        $post->body = Purify::clean($request->body);// Purify dirty html
 
         $post->save();
 
