@@ -17,7 +17,7 @@ class BlogController extends Controller
 
     public function getSingle($slug){
         $post = Post::where('slug', $slug)->firstOrFail();
-        $comments = Comment::all();
+        $comments = Comment::where('post_id', $post->id)->get();
         return view('blog.single')->withPost($post)->withComments($comments);
     }
 }
