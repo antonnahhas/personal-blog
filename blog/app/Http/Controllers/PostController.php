@@ -10,6 +10,8 @@ use App\Models\Comment;
 use Session;
 use Illuminate\Routing\Controllers\Middleware;
 use Stevebauman\Purify\Facades\Purify;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\GD\Driver;
 
 class PostController extends Controller
 {
@@ -53,6 +55,20 @@ class PostController extends Controller
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
         $post->body = Purify::clean($request->body); // Purify dirty html
+
+        // Save Image
+        if($request->hasFile('featured_image')){
+            $image = $request->file('featured_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($image->getPathname());
+            $image->resize(800, 400)->save($location);
+
+            // Save filename in the db    
+            $post->image = $filename;
+        }
 
         $post->save();
 

@@ -10,6 +10,12 @@
             <hr>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center mb-2">
+            <img src="{{ asset('images/' . $post->image) }}" alt="{{ $post->title }}" height="400" width="800">
+        </div>
+    </div>
     
     <div class="row">
         <div class="col-md-8 offset-md-2 ">
