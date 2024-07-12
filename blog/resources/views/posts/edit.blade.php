@@ -2,6 +2,17 @@
 
 @section('title', '| Edit Blog Post')
 
+@section('stylesheets')
+    <script src="https://cdn.tiny.cloud/1/{{ config('services.tinymce.api_key') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak code',
+            toolbar_mode: 'floating',
+        });
+    </script>
+@endsection
+
 @section('content')
 <div class="row">
         <div class="col-md-8">
@@ -28,7 +39,7 @@
             </select>
             
             {{ html()->label('Content:', 'body')->attribute('class', 'form-spacing-top') }}
-            {{ html()->textarea('body')->attribute('class', 'form-control') }}
+            {{ html()->textarea('body')->attribute('class', 'form-control')->attribute('rows', '5') }}
         </div>
         <div class="col-md-4">
             <div class="card bg-light">

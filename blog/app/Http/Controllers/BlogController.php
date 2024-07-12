@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comment;
 
 class BlogController extends Controller
 {
@@ -16,6 +17,7 @@ class BlogController extends Controller
 
     public function getSingle($slug){
         $post = Post::where('slug', $slug)->firstOrFail();
-        return view('blog.single')->withPost($post);
+        $comments = Comment::where('post_id', $post->id)->get();
+        return view('blog.single')->withPost($post)->withComments($comments);
     }
 }

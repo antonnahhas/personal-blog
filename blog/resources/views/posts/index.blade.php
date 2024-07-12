@@ -28,7 +28,7 @@
                         <tr>
                             <th>{{ $post->id }}</th>
                             <td>{{ $post->title }}</td>
-                            <td>{{ substr($post->body, 0, 50) }}{{ strlen($post->body) > 50 ? "...": ""}}</td>
+                            <td>{{ substr(html_entity_decode(strip_tags($post->body)), 0, 50) }}{{ strlen(html_entity_decode(strip_tags($post->body))) > 50 ? "...": ""}}</td>
                             <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
                             <td>
                                 <a href="{{ route('posts.show', $post->id) }}" class="btn btn-light btn-sm btn-default">View</a> 

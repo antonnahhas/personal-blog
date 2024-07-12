@@ -8,7 +8,8 @@
         "php": "^8.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
-        "spatie/laravel-html": "^3.9"
+        "spatie/laravel-html": "^3.9",
+        "stevebauman/purify": "^6.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Comment;
 use Session;
 use Illuminate\Routing\Controllers\Middleware;
+use Stevebauman\Purify\Facades\Purify;
 
 class PostController extends Controller
 {
@@ -50,7 +52,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
-        $post->body = $request->body;
+        $post->body = Purify::clean($request->body); // Purify dirty html
 
         $post->save();
 
@@ -70,7 +72,8 @@ class PostController extends Controller
     public function show(string $id)
     {
         $post = Post::find($id);
-        return view('posts.show')->withPost($post);
+        $comments = Comment::where('post_id', $post->id)->get();
+        return view('posts.show')->withPost($post)->withComments($comments);
     }
 
     /**
@@ -114,7 +117,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
-        $post->body = $request->body;
+        $post->body = Purify::clean($request->body);// Purify dirty html
 
         $post->save();
 
