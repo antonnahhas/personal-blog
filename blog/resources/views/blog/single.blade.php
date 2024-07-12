@@ -13,7 +13,7 @@
     
     <div class="row">
         <div class="col-md-8 offset-md-2 ">
-            <p>{{ $post->body }}</p>
+            <p>{!! $post->body !!}</p>
         </div>
     </div>
     <div class="row">
