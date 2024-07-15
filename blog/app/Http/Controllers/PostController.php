@@ -12,6 +12,7 @@ use Illuminate\Routing\Controllers\Middleware;
 use Stevebauman\Purify\Facades\Purify;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\GD\Driver;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -47,6 +48,7 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'category_id' => 'required|integer',
+            'featured_image' => 'sometimes|image',
             'body' => 'required'
         ]);
         // step2: store to database
@@ -113,22 +115,14 @@ class PostController extends Controller
     {
         // Validate the data
         $post = Post::find($id);
-        if($request->slug == $post->slug){
-            $request->validate([
-                'title' => 'required|max:255',
-                'body' => 'required',
-                'category_id' => 'required|integer'
-            ]);
-        }
-        else{
-            $request->validate([
-                'title' => 'required|max:255',
-                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-                'category_id' => 'required|integer',
-                'body' => 'required'
-            ]);
-        }
-        
+        $request->validate([
+            'title' => 'required|max:255',
+            'slug' => "required|alpha_dash|min:5|max:255|unique:posts,slug,$id",
+            'category_id' => 'required|integer',
+            'featured_image' => 'sometimes|image',
+            'body' => 'required'
+        ]);
+                
         // Save the data to the db
         $post->title = $request->title;
         $post->slug = $request->slug;
@@ -140,12 +134,19 @@ class PostController extends Controller
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
+
             $manager = new ImageManager(new Driver());
             $image = $manager->read($image->getPathname());
             $image->resize(800, 400)->save($location);
-
+            
+            // delete old image
+            $oldFilename = $post->image;
             // Save filename in the db    
             $post->image = $filename;
+            // Delete the file
+            if (strlen($oldFilename) > 0 && Storage::disk('public')->exists($oldFilename)) {
+                Storage::delete($oldFilename);
+            }
         }
 
         $post->save();
