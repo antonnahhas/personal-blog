@@ -10,6 +10,13 @@
             <hr>
         </div>
     </div>
+    @if ($post->image != "")
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center mb-2">
+                <img src="{{ asset('images/' . $post->image) }}" alt="{{ $post->title }}" height="400" width="800">
+            </div>
+        </div>
+    @endif
     
     <div class="row">
         <div class="col-md-8 offset-md-2 ">

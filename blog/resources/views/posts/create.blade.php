@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <h1>Create New Post</h1>
                 <hr>
-                {{ html()->modelForm('POST')->route('posts.store')->open() }}
+                {{ html()->modelForm('POST')->route('posts.store')->attribute('enctype', 'multipart/form-data')->open() }}
 
                     {{ html()->label('Title:', 'title') }}
                     {{ html()->text('title')->attribute('class', 'form-control') }}
@@ -39,6 +39,9 @@
                             <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                         @endforeach
                     </select>
+
+                    {{ html()->label('Featured Image:', 'featured_image') }}
+                    {{ html()->file('featured_image')->attribute('class', 'form-control') }}
 
                     {{ html()->label('Content:', 'body') }}
                     {{ html()->textarea('body')->attribute('class', 'form-control')->attribute('rows', '5') }}

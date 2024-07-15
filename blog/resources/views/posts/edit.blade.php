@@ -16,7 +16,7 @@
 @section('content')
 <div class="row">
         <div class="col-md-8">
-            {!! html()->modelForm($post, 'PUT', route('posts.update', $post->id))->open() !!}
+            {!! html()->modelForm($post, 'PUT', route('posts.update', $post->id))->attribute('enctype', 'multipart/form-data')->open() !!}
             
             {{ html()->label('Title:', 'title') }}
             {{ html()->text('title')->attribute('class', 'form-control') }}
@@ -37,6 +37,9 @@
                     <option value="{{ $tag->id }}" {{ in_array($tag->id, $post->tags->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $tag->name }}</option>
                 @endforeach
             </select>
+
+            {{ html()->label('Featured Image:', 'featured_image') }}
+            {{ html()->file('featured_image')->attribute('class', 'form-control') }}
             
             {{ html()->label('Content:', 'body')->attribute('class', 'form-spacing-top') }}
             {{ html()->textarea('body')->attribute('class', 'form-control')->attribute('rows', '5') }}
