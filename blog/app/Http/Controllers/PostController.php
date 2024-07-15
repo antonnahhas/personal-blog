@@ -135,6 +135,19 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
         $post->body = Purify::clean($request->body);// Purify dirty html
 
+        // Save Image
+        if($request->hasFile('featured_image')){
+            $image = $request->file('featured_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($image->getPathname());
+            $image->resize(800, 400)->save($location);
+
+            // Save filename in the db    
+            $post->image = $filename;
+        }
+
         $post->save();
 
         if(isset($request->tags)) {
