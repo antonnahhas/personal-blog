@@ -5,13 +5,13 @@
     </head>
     <body>
         @include('partials._nav')
-        <div class="container pt-3">
+        <div class="container pt-3 main-content">
             @include('partials._messages')
 
             @yield('content')
 
-            @include('partials._footer')
         </div>
+        @include('partials._footer')
 
         @include('partials._javascript')
         
