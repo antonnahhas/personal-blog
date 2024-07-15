@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Tag;
 use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Mail;
 use Session;
@@ -11,7 +14,11 @@ use Session;
 class PagesController extends Controller {
     public function getIndex() {
         $posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
-        return view('pages.welcome')->withPosts($posts);
+        $postsCount = Post::all()->count();
+        $tagsCount = Tag::all()->count();
+        $categoriesCount = Category::all()->count();
+        $authorsCount = User::all()->count();
+        return view('pages.welcome')->withPosts($posts)->withTagsCount($tagsCount)->withCategoriesCount($categoriesCount)->withAuthorsCount($authorsCount)->withPostsCount($postsCount);
     }
 
     public function getAbout() {

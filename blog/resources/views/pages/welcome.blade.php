@@ -29,8 +29,15 @@
                 @endforeach
 
             </div>
-            <div class="col-md-3 col-md-offset-1">
-                <h2>Side bar</h2>
+            <div class="col-md-3 offset-md-1">
+                <h2>Blog's details</h2>
+                <hr>
+                <p>Current Authors: <strong>{{ $authorsCount }}</strong></p>
+                <p>Current Posts: <strong>{{ $postsCount }}</strong></p>
+                <p>Current Categories: <strong>{{ $categoriesCount }}</strong></p>
+                <p>Current Tags: <strong>{{ $tagsCount }}</strong></p>
+                <a href="\about" class="mr-3">About This Blog</a>
+                <a href="\contact">Contact Us</a>
             </div>
         </div>
 @endsection
