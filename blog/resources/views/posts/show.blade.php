@@ -7,6 +7,15 @@
     <div class="row">
         <div class="col-md-8">
             <h1>{{ $post->title }}</h1>
+
+            @if ($post->image != "")
+                <div class="row">
+                    <div class="col-md-8 mb-2">
+                        <img src="{{ asset('images/' . $post->image) }}" alt="{{ $post->title }}" height="400" width="800">
+                    </div>
+                </div>
+            @endif
+
             <p class="lead">{!! $post->body !!}</p>
             <hr>
 
