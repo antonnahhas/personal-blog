@@ -3,7 +3,9 @@
 @section('title', '| View Post')
 
 @section('content')
-
+    @php
+        $isOwner = Auth::user()->id == $post->user_id;
+    @endphp
     <div class="row">
         <div class="col-md-8">
             <h1>{{ $post->title }}</h1>
@@ -66,6 +68,14 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
+                                <dt>Author:</dt>
+                            </div>
+                            <div class="col-md-6">
+                                <dd>{{ $post->user->name }}</dd>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <dt>Created at:</dt>
                             </div>
                             <div class="col-md-6">
@@ -92,11 +102,11 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            {{ Html()->a(route('posts.edit', $post->id), 'Edit')->attribute('class', 'btn btn-primary btn-block') }}
+                            {{ Html()->a(route('posts.edit', $post->id), 'Edit')->attribute('class', 'btn btn-primary btn-block ' . ($isOwner ? '' : 'disabled')) }}
                         </div>
                         <div class="col-md-6">
                             {!! html()->modelForm($post, 'DELETE', route('posts.destroy', $post->id))->open() !!}
-                                {{ html()->submit('Delete')->attribute('class', 'btn btn-danger btn-block')}}
+                                {{ html()->submit('Delete')->attribute('class', 'btn btn-danger btn-block ' . ($isOwner ? '' : 'disabled')) }}
                             {!! html()->closeModelForm() !!}
                         </div>
                     </div>

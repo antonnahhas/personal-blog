@@ -23,9 +23,27 @@
             <p>{!! $post->body !!}</p>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mb-2">
+            <div class="tags">
+                @foreach($post->tags as $tag)
+                    <span class="badge badge-secondary">{{ $tag->name }}</span>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    
+
     <div class="row">
         <div class="col-md-8 offset-md-2 text-secondary">
             <p>Category: {{ $post->category->name }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-secondary">
+            <p>Author: {{ $post->user->name }}</p>
         </div>
     </div>
 
