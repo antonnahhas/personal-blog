@@ -1,66 +1,147 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Personal Blog Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a personal blog application built using Laravel 11. The application supports user authentication, CRUD operations for posts, image uploads, categories, tags, and comment management. Additionally, the application uses various libraries for extended functionality such as HTML form helpers, HTML purification, and image manipulation.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- User authentication with Laravel Breeze.
+- CRUD operations for blog posts.
+- Image upload and resizing with Intervention Image.
+- Purify HTML content using stevebauman/purify.
+- Category and tag management.
+- Comment management.
+- Pagination and search functionality.
+- Responsive UI with Bootstrap.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Libraries and Tools
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Laravel Framework**: ^11.9
+- **PHP**: ^8.2
+- **Intervention Image**: ^3.7
+- **Spatie Laravel HTML**: ^3.9
+- **Stevebauman Purify**: ^6.2
+- **Laravel Tinker**: ^2.9
+- **Laravel Breeze**: ^2.1 (for user authentication scaffolding)
+- **FakerPHP**: ^1.23 (for generating fake data)
+- **PHPUnit**: ^11.0.1 (for testing)
+- **Laravel Sail**: ^1.26 (for local development environment)
+- **Laravel Pint**: ^1.13 (for code styling)
+- **Mockery**: ^1.6 (for mocking in tests)
+- **Nunomaduro Collision**: ^8.0 (for error handling in console)
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Prerequisites
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP ^8.2
+- Composer 2.7.7
+- Node.js and npm (for front-end dependencies)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Steps
 
-## Laravel Sponsors
+1. Clone the repository:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    ```bash
+    git clone https://github.com/your-username/your-repo.git
+    cd your-repo
+    ```
 
-### Premium Partners
+2. Install PHP dependencies:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    ```bash
+    composer install
+    ```
+
+3. Install JavaScript dependencies:
+
+    ```bash
+    npm install
+    ```
+
+4. Copy the `.env.example` file to `.env` and configure your environment variables:
+
+    ```bash
+    cp .env.example .env
+    ```
+
+5. Generate an application key:
+
+    ```bash
+    php artisan key:generate
+    ```
+
+6. Run database migrations:
+
+    ```bash
+    php artisan migrate
+    ```
+
+7. (Optional) Seed the database:
+
+    ```bash
+    php artisan db:seed
+    ```
+
+8. Run the development server:
+
+    ```bash
+    php artisan serve
+    ```
+
+## Usage
+
+### Authentication
+
+The application uses Laravel Breeze for authentication. You can register a new user, log in, and logout.
+
+### Posts
+
+Users can create, edit, delete, and view blog posts. Each post can have a category, multiple tags, and comments. Users can only edit or delete their own posts.
+
+### Categories and Tags
+
+Posts can be categorized and tagged. Users can manage categories and tags through dedicated CRUD interfaces.
+
+### Comments
+
+Authenticated users can leave comments on posts. Each comment is associated with a mock-user (don't have to log in) and a post.
+
+### Image Upload
+
+When creating or editing posts, users can upload an image. The image is resized using the Intervention Image library and stored in the `public/images` directory.
+
+### HTML Purification
+
+User input is purified using the `stevebauman/purify` library to prevent XSS attacks.
+
+### Pagination and Filtering
+
+Posts are paginated.
+
+## Configuration
+
+### Environment Variables
+
+- **APP_NAME**: The name of the application.
+- **APP_ENV**: The application environment (local, production, etc.).
+- **APP_DEBUG**: Enable or disable debug mode.
+- **APP_URL**: The base URL of the application.
+- **DB_CONNECTION**: The database connection type (e.g., mysql).
+- **DB_HOST**: The database host.
+- **DB_PORT**: The database port.
+- **DB_DATABASE**: The database name.
+- **DB_USERNAME**: The database username.
+- **DB_PASSWORD**: The database password.
+- **MAIL_MAILER**: The mail driver (e.g., smtp).
+- **MAIL_HOST**: The mail host.
+- **MAIL_PORT**: The mail port.
+- **MAIL_USERNAME**: The mail username.
+- **MAIL_PASSWORD**: The mail password.
+- **MAIL_ENCRYPTION**: The mail encryption method (tls or ssl).
+- **MAIL_FROM_ADDRESS**: The email address for outgoing emails.
+- **MAIL_FROM_NAME**: The name for outgoing emails.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Contributions are welcome! Please open an issue or submit a pull request.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
