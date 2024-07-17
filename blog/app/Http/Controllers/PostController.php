@@ -13,6 +13,7 @@ use Stevebauman\Purify\Facades\Purify;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\GD\Driver;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -56,6 +57,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
+        $post->user_id = Auth::user()->id;
         $post->body = Purify::clean($request->body); // Purify dirty html
 
         // Save Image
@@ -127,6 +129,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
+        $post->user_id = Auth::user()->id;
         $post->body = Purify::clean($request->body);// Purify dirty html
 
         // Save Image
