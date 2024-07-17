@@ -14,9 +14,11 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\GD\Driver;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -104,6 +106,14 @@ class PostController extends Controller
         // Find the post in the db and save it as a variable
         $post = Post::find($id);
 
+        // Authorize the user
+        $response = Gate::inspect('update', $post);
+
+        if(!$response->allowed()){
+            Session::flash('error', $response->message());
+            return back();
+        }
+
         $categories = Category::all();
         $tags = Tag::all();
         // return the view
@@ -116,7 +126,16 @@ class PostController extends Controller
     public function update(Request $request, string $id)
     {
         // Validate the data
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
+
+        // Authorize the user
+        $response = Gate::inspect('update', $post);
+
+        if(!$response->allowed()){
+            Session::flash('error', $response->message());
+            return back();
+        }
+
         $request->validate([
             'title' => 'required|max:255',
             'slug' => "required|alpha_dash|min:5|max:255|unique:posts,slug,$id",
@@ -174,7 +193,15 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
+
+        // Authorize the user
+        $response = Gate::inspect('delete', $post);
+
+        if(!$response->allowed()){
+            Session::flash('error', $response->message());
+            return back();
+        }
 
         $post->delete();
 

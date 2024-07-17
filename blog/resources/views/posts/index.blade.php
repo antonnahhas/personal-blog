@@ -32,7 +32,7 @@
                             <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
                             <td>
                                 <a href="{{ route('posts.show', $post->id) }}" class="btn btn-light btn-sm btn-default">View</a> 
-                                <a href="{{ route('posts.edit', $post->id)}}" class="btn btn-light btn-sm btn-default">Edit</a>
+                                <a href="{{ route('posts.edit', $post->id)}}" class="btn btn-light btn-sm btn-default {{ Auth::user()->id == $post->user_id ? '' : 'disabled' }}">Edit</a>
                             </td>
                         </tr>
                     @endforeach
